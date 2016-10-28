@@ -1,0 +1,4 @@
+Django==1.10.2
+django-tinymce==2.4.0
+Pillow==3.4.2
+sorl-thumbnail==12.3
