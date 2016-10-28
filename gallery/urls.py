@@ -1,8 +1,8 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from .views import *
+import gallery.views
 
 urlpatterns = [
-    url(r'^browser/$', views.browser, name='browser'),
+    url(r'^browser/$', gallery.views.browser, name='browser'),
 ]
