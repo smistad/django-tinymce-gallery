@@ -1,3 +1,8 @@
+// This is needed for using django's bundled jquery
+if (!$) {
+    $ = django.jQuery;
+}
+
 function formatState (state) {
     if (!state.id) { return state.text; }
 

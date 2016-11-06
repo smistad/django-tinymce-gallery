@@ -1,5 +1,8 @@
+from django import forms
 from django.forms import widgets
+from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
+import tinymce.widgets
 
 
 class SelectImage(widgets.Widget):
@@ -22,10 +25,24 @@ class SelectImage(widgets.Widget):
 
         return mark_safe(string)
 
-
     class Media:
-        js = ('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
-              'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+        js = (
               'gallery/js/select_image.js',
+              'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
               )
         css = {'all': ('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css',)}
+
+
+class RichTextFormatWidget(tinymce.widgets.TinyMCE):
+    # Override media
+    def _media(self):
+        if tinymce.settings.USE_COMPRESSOR:
+            js = [reverse('tinymce-compressor')]
+        else:
+            js = [tinymce.settings.JS_URL]
+        # TODO add gallery brower init script here
+        js.append('django_tinymce/init_tinymce.js')
+        js.append('gallery/js/gallery_browser_init.js')
+        return forms.Media(js=js)
+    media = property(_media)
+

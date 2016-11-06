@@ -124,7 +124,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'file_browser_callback': 'gallery_browser_init', # This is the name of the javascript function which will be called, when browsing
+    # This is the name of the javascript function which will be called, when browsing.
+    # TODO Move this to widget/modelfield
+    'file_browser_callback': 'gallery_browser_init',
     'plugins': "paste",
     'theme': "advanced",
     'width': '800',

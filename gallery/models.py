@@ -1,5 +1,6 @@
 from django.db import models
-from .widgets import SelectImage
+from .widgets import SelectImage, RichTextFormatWidget
+from django.contrib.admin import widgets as admin_widgets
 
 
 class Image(models.Model):
@@ -31,3 +32,19 @@ class GalleryImageField(models.ForeignKey):
         #    defaults['widget'] = tinymce_widgets.AdminTinyMCE
 
         return super(GalleryImageField, self).formfield(**defaults)
+
+
+class RichTextFormatField(models.TextField):
+    """
+    A large string field for HTML content. It uses the TinyMCE widget in
+    forms.
+    """
+    def formfield(self, **kwargs):
+        defaults = {'widget': RichTextFormatWidget}
+        defaults.update(kwargs)
+
+        # As an ugly hack, we override the admin widget
+        if defaults['widget'] == admin_widgets.AdminTextareaWidget:
+            defaults['widget'] = RichTextFormatWidget
+
+        return super(RichTextFormatField, self).formfield(**defaults)
