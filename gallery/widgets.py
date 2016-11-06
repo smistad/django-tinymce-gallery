@@ -21,3 +21,11 @@ class SelectImage(widgets.Widget):
         string += '</select>'
 
         return mark_safe(string)
+
+
+    class Media:
+        js = ('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js',
+              'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+              'gallery/js/select_image.js',
+              )
+        css = {'all': ('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css',)}
