@@ -140,7 +140,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'convert_urls': False,
 }
 
-TEMPLATE_DEBUG = True
+THUMBNAIL_DEBUG = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

@@ -21,4 +21,5 @@ from django.conf import settings
 urlpatterns = [
     url(r'^gallery/', include('gallery.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'', include('testapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

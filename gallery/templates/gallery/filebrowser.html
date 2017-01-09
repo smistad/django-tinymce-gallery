@@ -87,16 +87,17 @@
       {% if is_images_dialog %}
         <div id="images_panel" class="panel{% if not upload_tab_active %} current{% endif %}">
           <fieldset>
-            <legend>{% trans "Previosly uploaded images" %}</legend>
+            <legend>{% trans "Previosly uploaded imagesd" %}</legend>
             {% if files %}
               <ul class="images_list">
                 {% for img in files %}
                   <li>
-                    {% thumbnail img.uploaded_file "100x100" crop="center" as im %}
-                      <a href="{{ img.uploaded_file.url }}" onClick="FileBrowserDialogue.file_in_use(this);return false;">
+                    {% thumbnail img.file "100x100" crop="center" as im %}
+                      <a href="{{ img.file.url }}" onClick="FileBrowserDialogue.file_in_use(this);return false;">
                         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" border="0" />
                       </a>
                     {% endthumbnail %}
+                  {{ img.name }}
                   </li>
                 {% endfor %}
               </ul>
@@ -131,6 +132,7 @@
           <legend>
             {% trans "Upload file" %}
           </legend>
+            <strong>Not supported at the momemt! Upload new images to gallery first instead.</strong>
           {{ upload_form }}
         </fieldset>
       </div>
